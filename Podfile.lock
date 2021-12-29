@@ -1,0 +1,30 @@
+PODS:
+  - HMSegmentedControl (1.5.6)
+  - MBProgressHUD (1.2.0)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
+  - SwiftDate (6.3.1)
+
+DEPENDENCIES:
+  - HMSegmentedControl
+  - MBProgressHUD
+  - SDWebImage
+  - SwiftDate
+
+SPEC REPOS:
+  trunk:
+    - HMSegmentedControl
+    - MBProgressHUD
+    - SDWebImage
+    - SwiftDate
+
+SPEC CHECKSUMS:
+  HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
+
+PODFILE CHECKSUM: d90a40ddb6161849c6178ff7a5d7b5bff235c46c
+
+COCOAPODS: 1.10.2
