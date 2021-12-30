@@ -26,6 +26,20 @@ class VideoInfoViewController: AcelaViewController {
 		updateData()
 	}
 
+	func addShare() {
+		let barButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+		navigationItem.rightBarButtonItem = barButton
+	}
+
+	@objc func shareTapped() {
+		guard
+			let item = viewModel.item,
+			let url = URL(string: "\(Server.shared.server)watch?v=\(item.author)/\(item.permlink)")
+		else { return }
+		let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+		present(activityViewController, animated: true, completion: nil)
+	}
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		loadVideoInfo()
@@ -39,7 +53,7 @@ class VideoInfoViewController: AcelaViewController {
 			switch result {
 			case .success:
 				if let desc = self.viewModel.videoInfo?.videoDesc {
-					self.infoWebView.loadHTMLString(desc, baseURL: URL(string: "https://3speak.tv/")!)
+					self.infoWebView.loadHTMLString(desc, baseURL: URL(string: Server.shared.server)!)
 				}
 			case .failure(let error):
 				self.showAlert(message: "Something went wrong.\n\(error.localizedDescription)")
@@ -48,6 +62,7 @@ class VideoInfoViewController: AcelaViewController {
 	}
 
 	func applyThemeing() {
+		addShare()
 		shadowView.layer.borderColor = UIColor.label.cgColor
 		shadowView.layer.borderWidth = 1
 		shadowView.layer.cornerRadius = 15
