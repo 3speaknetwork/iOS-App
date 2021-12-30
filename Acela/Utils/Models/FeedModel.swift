@@ -18,6 +18,7 @@ struct FeedModel: Codable {
 	let views: Int
 	let duration: Double
 	let author: String
+	let permlink: String
 	let images: FeedModelImage
 }
 

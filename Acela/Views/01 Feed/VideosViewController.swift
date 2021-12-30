@@ -54,6 +54,20 @@ class VideosViewController: AcelaViewController {
 			}
 		}
 	}
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "videoDetails",
+			 let sender = sender as? FeedModel,
+			 let viewController = segue.destination as? VideoInfoViewController,
+			 navigationController != nil {
+			viewController.viewModel.item = sender
+		}
+	}
+
+	func loadVideoInfo(at: IndexPath) {
+		let item = viewForSegment.selectedSegmentIndex == 1 ? viewModel.newFeed[at.row] : viewModel.trendingFeed[at.row]
+		performSegue(withIdentifier: "videoDetails", sender: item)
+	}
 }
 
 extension VideosViewController: UITableViewDataSource, UITableViewDelegate {
@@ -72,6 +86,7 @@ extension VideosViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
+		loadVideoInfo(at: indexPath)
 	}
 
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -88,7 +103,7 @@ extension VideosViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func loadNextPage(isTrending: Bool) {
 		showHUD("Loading Data")
-		viewModel.loadNextPage(isTrending)  { [weak self] result in
+		viewModel.loadNextPage(isTrending) { [weak self] result in
 			guard let self = self else { return }
 			self.hideHUD()
 			self.refreshNewFeed.endRefreshing()

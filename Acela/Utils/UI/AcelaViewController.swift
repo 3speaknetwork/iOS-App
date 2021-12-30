@@ -12,10 +12,10 @@ import MBProgressHUD
 class AcelaViewController: UIViewController {
 	var hud: MBProgressHUD? = nil
 
-	func showHUD(_ message: String) {
+	func showHUD(_ message: String, view: UIView? = nil) {
 		OperationQueue.main.addOperation {
 			self.hud?.hide(animated: false)
-			self.hud = MBProgressHUD(view: self.view)
+			self.hud = MBProgressHUD(view: view ?? self.view)
 			self.hud?.button.titleLabel?.text = message
 			self.view.addSubview(self.hud!)
 			self.hud?.show(animated: false)
