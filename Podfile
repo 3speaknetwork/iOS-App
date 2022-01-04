@@ -7,6 +7,7 @@ target 'Acela' do
 	use_frameworks!
 	pod 'HMSegmentedControl'
 	pod 'MBProgressHUD'
+	pod 'MarkdownView'
 	pod 'SDWebImage'
 	pod 'SwiftDate'
 	# Pods for Acela

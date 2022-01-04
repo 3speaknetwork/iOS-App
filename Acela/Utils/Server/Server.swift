@@ -14,4 +14,12 @@ class Server {
 
 	let trendingFeed = "feeds/trending"
 	let newFeed = "feeds/new"
+
+	func m3u8(isIpfs: Bool, identifier: String) -> String {
+		if !isIpfs {
+			return "https://threespeakvideo.b-cdn.net/\(identifier)/default.m3u8"
+		} else {
+			return "https://ipfs-3speak.b-cdn.net/ipfs/\(identifier)/default.m3u8"
+		}
+	}
 }

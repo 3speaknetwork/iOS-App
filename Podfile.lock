@@ -1,5 +1,6 @@
 PODS:
   - HMSegmentedControl (1.5.6)
+  - MarkdownView (1.8.3)
   - MBProgressHUD (1.2.0)
   - SDWebImage (5.12.1):
     - SDWebImage/Core (= 5.12.1)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - HMSegmentedControl
+  - MarkdownView
   - MBProgressHUD
   - SDWebImage
   - SwiftDate
@@ -15,16 +17,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - HMSegmentedControl
+    - MarkdownView
     - MBProgressHUD
     - SDWebImage
     - SwiftDate
 
 SPEC CHECKSUMS:
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
+  MarkdownView: 44a260beec01538e6cdbbce9c2f631b1f3634907
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: 4099543d16f154322db33b4b5f9d8976b9713ee0
+PODFILE CHECKSUM: b9fc3ed16ec98c38c51dea672eab68e8baf2d840
 
 COCOAPODS: 1.10.2

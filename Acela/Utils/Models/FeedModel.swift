@@ -20,6 +20,8 @@ struct FeedModel: Codable {
 	let author: String
 	let permlink: String
 	let images: FeedModelImage
+	let isIpfs: Bool
+	let ipfs: String?
 }
 
 struct FeedModelImage: Codable {

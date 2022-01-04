@@ -13,8 +13,8 @@
         <scene sceneID="J6a-Ax-QmH">
             <objects>
                 <navigationController id="bnv-rL-uhW" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0ME-KM-G9c">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="0ME-KM-G9c">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -25,20 +25,43 @@
             </objects>
             <point key="canvasLocation" x="-361" y="135"/>
         </scene>
-        <!--3Speak-->
+        <!--Acela-->
         <scene sceneID="sfX-fz-qAB">
             <objects>
-                <viewController title="3Speak" id="1hq-JV-rXM" customClass="VideosViewController" customModule="Acela" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Acela" id="1hq-JV-rXM" customClass="VideosViewController" customModule="Acela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vy1-mE-d5c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PH9-JY-g27">
-                                <rect key="frame" x="0.0" y="124" width="414" height="738"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="eCo-Py-gLS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ccA-0g-G8e">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                            <segments>
+                                                <segment title="Trending"/>
+                                                <segment title="New"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentChanged" destination="1hq-JV-rXM" eventType="valueChanged" id="J4P-UQ-QfA"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="ccA-0g-G8e" firstAttribute="leading" secondItem="eCo-Py-gLS" secondAttribute="leading" id="0UU-Nl-Xn5"/>
+                                        <constraint firstAttribute="bottom" secondItem="ccA-0g-G8e" secondAttribute="bottom" id="4Qg-1f-2vL"/>
+                                        <constraint firstAttribute="trailing" secondItem="ccA-0g-G8e" secondAttribute="trailing" id="AYx-e0-Ohn"/>
+                                        <constraint firstItem="ccA-0g-G8e" firstAttribute="top" secondItem="eCo-Py-gLS" secondAttribute="top" id="Bvw-qh-oDy"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="qps-ah-MTI" customClass="VideosCell" customModule="Acela" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="264"/>
+                                        <rect key="frame" x="0.0" y="88.5" width="414" height="264"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qps-ah-MTI" id="AWc-ud-4bB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="264"/>
@@ -117,121 +140,19 @@
                                     <outlet property="delegate" destination="1hq-JV-rXM" id="SRQ-ev-Rek"/>
                                 </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ecg-QZ-CxK">
-                                <rect key="frame" x="0.0" y="124" width="414" height="738"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="SBr-4i-ZlR" customClass="VideosCell" customModule="Acela" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="264"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SBr-4i-ZlR" id="ZBo-Xm-xjk">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="264"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adv-rV-wuz">
-                                                    <rect key="frame" x="5" y="5" width="404" height="254"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wdO-iq-X81">
-                                                    <rect key="frame" x="13" y="13" width="388" height="238"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3S_logo" translatesAutoresizingMaskIntoConstraints="NO" id="AaE-0t-sju">
-                                                            <rect key="frame" x="0.0" y="0.0" width="388" height="180"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="180" id="NoK-rX-0Qs"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iBM-Tj-kzU">
-                                                            <rect key="frame" x="0.0" y="188" width="96.5" height="50"/>
-                                                            <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BcO-rb-ZXh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="50" id="X5Y-7A-ucs"/>
-                                                                        <constraint firstAttribute="height" constant="50" id="bWc-Qh-nya"/>
-                                                                    </constraints>
-                                                                </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xvm-sh-ft6">
-                                                                    <rect key="frame" x="55" y="2.5" width="41.5" height="45.5"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaW-Xo-inX">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-CA-ZLe">
-                                                                            <rect key="frame" x="0.0" y="28.5" width="35.5" height="17"/>
-                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="AaE-0t-sju" firstAttribute="width" secondItem="wdO-iq-X81" secondAttribute="width" id="NDJ-WL-DfV"/>
-                                                    </constraints>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="adv-rV-wuz" secondAttribute="trailing" constant="5" id="3Ct-IJ-4Kp"/>
-                                                <constraint firstAttribute="trailing" secondItem="wdO-iq-X81" secondAttribute="trailing" constant="13" id="8QL-aT-PLe"/>
-                                                <constraint firstItem="adv-rV-wuz" firstAttribute="top" secondItem="ZBo-Xm-xjk" secondAttribute="top" constant="5" id="Cvb-QM-00H"/>
-                                                <constraint firstItem="adv-rV-wuz" firstAttribute="leading" secondItem="ZBo-Xm-xjk" secondAttribute="leading" constant="5" id="KpX-Tw-uex"/>
-                                                <constraint firstItem="wdO-iq-X81" firstAttribute="top" secondItem="ZBo-Xm-xjk" secondAttribute="top" constant="13" id="d6G-zI-Ya3"/>
-                                                <constraint firstAttribute="bottom" secondItem="adv-rV-wuz" secondAttribute="bottom" constant="5" id="e7a-hk-jad"/>
-                                                <constraint firstItem="wdO-iq-X81" firstAttribute="leading" secondItem="ZBo-Xm-xjk" secondAttribute="leading" constant="13" id="pUF-zv-yYg"/>
-                                                <constraint firstAttribute="bottom" secondItem="wdO-iq-X81" secondAttribute="bottom" constant="13" id="zq3-AV-hZU"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cellImageView" destination="AaE-0t-sju" id="HGw-T9-vzT"/>
-                                            <outlet property="cellShadowView" destination="adv-rV-wuz" id="RU1-ke-3DR"/>
-                                            <outlet property="cellSubTitle" destination="cX9-CA-ZLe" id="Uo0-BJ-jqN"/>
-                                            <outlet property="cellTitle" destination="LaW-Xo-inX" id="8ap-I4-zPL"/>
-                                            <outlet property="cellUserImageView" destination="BcO-rb-ZXh" id="dKg-xD-ahJ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="1hq-JV-rXM" id="unY-Cu-SRE"/>
-                                    <outlet property="delegate" destination="1hq-JV-rXM" id="l8V-U1-Tgs"/>
-                                </connections>
-                            </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ccA-0g-G8e">
-                                <rect key="frame" x="0.0" y="88" width="414" height="32"/>
-                                <segments>
-                                    <segment title="Trending"/>
-                                    <segment title="New"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentChanged" destination="1hq-JV-rXM" eventType="valueChanged" id="J4P-UQ-QfA"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tUp-UV-jv3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tUp-UV-jv3" firstAttribute="trailing" secondItem="PH9-JY-g27" secondAttribute="trailing" id="34B-wj-l1J"/>
-                            <constraint firstItem="ccA-0g-G8e" firstAttribute="top" secondItem="tUp-UV-jv3" secondAttribute="top" id="5PS-iY-fjH"/>
-                            <constraint firstItem="tUp-UV-jv3" firstAttribute="trailing" secondItem="ccA-0g-G8e" secondAttribute="trailing" id="FID-xl-7a6"/>
                             <constraint firstItem="PH9-JY-g27" firstAttribute="leading" secondItem="tUp-UV-jv3" secondAttribute="leading" id="JNs-SO-WEq"/>
-                            <constraint firstItem="Ecg-QZ-CxK" firstAttribute="top" secondItem="ccA-0g-G8e" secondAttribute="bottom" constant="5" id="KGv-IN-NOI"/>
-                            <constraint firstItem="ccA-0g-G8e" firstAttribute="leading" secondItem="tUp-UV-jv3" secondAttribute="leading" id="M9E-yL-iXP"/>
                             <constraint firstItem="tUp-UV-jv3" firstAttribute="bottom" secondItem="PH9-JY-g27" secondAttribute="bottom" id="Nkh-8u-ZDh"/>
-                            <constraint firstItem="tUp-UV-jv3" firstAttribute="bottom" secondItem="Ecg-QZ-CxK" secondAttribute="bottom" id="PJS-0k-6TN"/>
-                            <constraint firstItem="PH9-JY-g27" firstAttribute="top" secondItem="ccA-0g-G8e" secondAttribute="bottom" constant="5" id="Sqn-Q4-8cj"/>
-                            <constraint firstItem="Ecg-QZ-CxK" firstAttribute="trailing" secondItem="tUp-UV-jv3" secondAttribute="trailing" id="f5u-Ou-BoS"/>
-                            <constraint firstItem="Ecg-QZ-CxK" firstAttribute="leading" secondItem="tUp-UV-jv3" secondAttribute="leading" id="jR4-wR-mMi"/>
+                            <constraint firstItem="PH9-JY-g27" firstAttribute="top" secondItem="tUp-UV-jv3" secondAttribute="top" id="zHT-HS-dEp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="3Speak" id="rBv-a9-GK3"/>
+                    <navigationItem key="navigationItem" title="Acela" id="rBv-a9-GK3"/>
                     <connections>
-                        <outlet property="tableViewNew" destination="PH9-JY-g27" id="yr1-1I-xPs"/>
-                        <outlet property="tableViewTrending" destination="Ecg-QZ-CxK" id="J34-D4-434"/>
+                        <outlet property="tableView" destination="PH9-JY-g27" id="iCe-5L-MxN"/>
                         <outlet property="viewForSegment" destination="ccA-0g-G8e" id="3hg-JZ-oeY"/>
                         <segue destination="eFi-ZR-srn" kind="show" identifier="videoDetails" id="CcV-d5-wbp"/>
                     </connections>
@@ -245,29 +166,24 @@
             <objects>
                 <viewController id="eFi-ZR-srn" customClass="VideoInfoViewController" customModule="Acela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PZP-g8-3d3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdJ-BR-Vqe">
-                                <rect key="frame" x="10" y="10" width="394" height="260"/>
+                                <rect key="frame" x="10" y="150" width="394" height="260"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="320" id="9pC-96-xvI"/>
+                                </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3S_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WqV-Bo-mhV">
-                                <rect key="frame" x="20" y="20" width="374" height="180"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3S_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WqV-Bo-mhV">
+                                <rect key="frame" x="20" y="160" width="374" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="iUi-hN-2rq"/>
                                 </constraints>
                             </imageView>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdr-5q-79A">
-                                <rect key="frame" x="0.0" y="321" width="414" height="487"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ctB-gp-XCf">
-                                <rect key="frame" x="20" y="280" width="374" height="32"/>
+                                <rect key="frame" x="20" y="420" width="374" height="32"/>
                                 <segments>
                                     <segment title="Info"/>
                                     <segment title="Comments"/>
@@ -275,7 +191,7 @@
                                 </segments>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ols-tb-35L">
-                                <rect key="frame" x="20" y="210" width="374" height="50"/>
+                                <rect key="frame" x="20" y="350" width="374" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="esq-PZ-9Vv">
                                         <rect key="frame" x="0.0" y="0.0" width="96.5" height="50"/>
@@ -308,6 +224,10 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zms-eH-6P1" customClass="MarkdownView" customModule="MarkdownView">
+                                <rect key="frame" x="0.0" y="471" width="414" height="391"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ChL-hr-l6L"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -317,23 +237,23 @@
                             <constraint firstItem="ChL-hr-l6L" firstAttribute="trailing" secondItem="WqV-Bo-mhV" secondAttribute="trailing" constant="20" id="3zj-2z-H65"/>
                             <constraint firstItem="ctB-gp-XCf" firstAttribute="leading" secondItem="ChL-hr-l6L" secondAttribute="leading" constant="20" id="8Gc-AM-yi2"/>
                             <constraint firstItem="WqV-Bo-mhV" firstAttribute="leading" secondItem="ChL-hr-l6L" secondAttribute="leading" constant="20" id="AZX-HR-KfB"/>
-                            <constraint firstItem="vdr-5q-79A" firstAttribute="leading" secondItem="ChL-hr-l6L" secondAttribute="leading" id="E4g-Yl-8Wg"/>
                             <constraint firstItem="LdJ-BR-Vqe" firstAttribute="top" secondItem="ChL-hr-l6L" secondAttribute="top" constant="10" id="OFd-tN-Z59"/>
                             <constraint firstItem="ctB-gp-XCf" firstAttribute="top" secondItem="LdJ-BR-Vqe" secondAttribute="bottom" constant="10" id="VYh-Vl-1ov"/>
+                            <constraint firstItem="zms-eH-6P1" firstAttribute="top" secondItem="ctB-gp-XCf" secondAttribute="bottom" constant="20" id="WAc-5Y-Sgs"/>
+                            <constraint firstItem="ChL-hr-l6L" firstAttribute="bottom" secondItem="zms-eH-6P1" secondAttribute="bottom" id="d41-ey-Q3S"/>
+                            <constraint firstItem="ChL-hr-l6L" firstAttribute="trailing" secondItem="zms-eH-6P1" secondAttribute="trailing" id="eK3-Td-39p"/>
+                            <constraint firstItem="zms-eH-6P1" firstAttribute="leading" secondItem="ChL-hr-l6L" secondAttribute="leading" id="jeX-0p-tNx"/>
                             <constraint firstItem="ChL-hr-l6L" firstAttribute="trailing" secondItem="ols-tb-35L" secondAttribute="trailing" constant="20" id="kHF-Fe-yHK"/>
                             <constraint firstItem="LdJ-BR-Vqe" firstAttribute="leading" secondItem="PZP-g8-3d3" secondAttribute="leading" constant="10" id="kiS-dS-qMO"/>
-                            <constraint firstItem="vdr-5q-79A" firstAttribute="top" secondItem="ctB-gp-XCf" secondAttribute="bottom" constant="10" id="ou6-FR-zec"/>
                             <constraint firstItem="ols-tb-35L" firstAttribute="leading" secondItem="ChL-hr-l6L" secondAttribute="leading" constant="20" id="rVz-az-7Cg"/>
                             <constraint firstItem="ols-tb-35L" firstAttribute="top" secondItem="WqV-Bo-mhV" secondAttribute="bottom" constant="10" id="sYz-QD-ZkB"/>
-                            <constraint firstItem="ChL-hr-l6L" firstAttribute="trailing" secondItem="vdr-5q-79A" secondAttribute="trailing" id="tF2-EF-n1E"/>
                             <constraint firstItem="WqV-Bo-mhV" firstAttribute="top" secondItem="ChL-hr-l6L" secondAttribute="top" constant="20" id="vzc-s8-xrv"/>
                             <constraint firstItem="ChL-hr-l6L" firstAttribute="trailing" secondItem="ctB-gp-XCf" secondAttribute="trailing" constant="20" id="w9w-xN-NeB"/>
-                            <constraint firstItem="ChL-hr-l6L" firstAttribute="bottom" secondItem="vdr-5q-79A" secondAttribute="bottom" id="zgg-YY-AJU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6eL-pK-oSO"/>
                     <connections>
-                        <outlet property="infoWebView" destination="vdr-5q-79A" id="AbF-Cg-Xj8"/>
+                        <outlet property="markDownView" destination="zms-eH-6P1" id="PPI-5S-8Nh"/>
                         <outlet property="shadowView" destination="LdJ-BR-Vqe" id="Y7q-12-mbD"/>
                         <outlet property="subTitleLabel" destination="FVq-GT-GBz" id="19h-rm-CwY"/>
                         <outlet property="titleLabel" destination="g7g-Ol-eYB" id="Svm-rN-My8"/>
@@ -351,11 +271,11 @@
             <objects>
                 <viewController id="a3W-wf-JI1" customClass="UserFeedViewController" customModule="Acela" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lpz-Ss-fhj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="i7Z-sV-XJr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="GaB-PA-sGB" customClass="VideosCell" customModule="Acela" customModuleProvider="target">
@@ -460,8 +380,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aMu-LK-id1"/>
-        <segue reference="6SI-Mg-jCs"/>
+        <segue reference="CcV-d5-wbp"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="3S_logo" width="382" height="98"/>
