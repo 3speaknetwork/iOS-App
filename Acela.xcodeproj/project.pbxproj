@@ -29,6 +29,9 @@
 		2CEE96A4277DE885003B05BF /* UserFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE96A3277DE885003B05BF /* UserFeedViewController.swift */; };
 		2CEE96A6277DE8DC003B05BF /* Server+UserFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE96A5277DE8DC003B05BF /* Server+UserFeed.swift */; };
 		2CEE96A8277DE979003B05BF /* UserFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE96A7277DE979003B05BF /* UserFeedViewModel.swift */; };
+		2CEF1F40278C2B4C00CE9AAD /* Server+VideoComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F3F278C2B4C00CE9AAD /* Server+VideoComments.swift */; };
+		2CEF1F42278C30D100CE9AAD /* VideoCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F41278C30D100CE9AAD /* VideoCommentCell.swift */; };
+		2CEF1F45278C683F00CE9AAD /* VideoCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F44278C683F00CE9AAD /* VideoCommentsViewController.swift */; };
 		C294611E74E686D0855A0F85 /* Pods_Acela.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB599E70CE7289F3D65FBCF /* Pods_Acela.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,9 @@
 		2CEE96A3277DE885003B05BF /* UserFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedViewController.swift; sourceTree = "<group>"; };
 		2CEE96A5277DE8DC003B05BF /* Server+UserFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+UserFeed.swift"; sourceTree = "<group>"; };
 		2CEE96A7277DE979003B05BF /* UserFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedViewModel.swift; sourceTree = "<group>"; };
+		2CEF1F3F278C2B4C00CE9AAD /* Server+VideoComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+VideoComments.swift"; sourceTree = "<group>"; };
+		2CEF1F41278C30D100CE9AAD /* VideoCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentCell.swift; sourceTree = "<group>"; };
+		2CEF1F44278C683F00CE9AAD /* VideoCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentsViewController.swift; sourceTree = "<group>"; };
 		5BB599E70CE7289F3D65FBCF /* Pods_Acela.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Acela.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D350635360DA8A1A37A790AC /* Pods-Acela.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acela.debug.xcconfig"; path = "Target Support Files/Pods-Acela/Pods-Acela.debug.xcconfig"; sourceTree = "<group>"; };
 		F46A2218648F48A2C5A20867 /* Pods-Acela.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acela.release.xcconfig"; path = "Target Support Files/Pods-Acela/Pods-Acela.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 		2CEBDC12277CDA10005AA57E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2CEF1F43278C682C00CE9AAD /* 04 Video Comments */,
 				2CEE96A2277DE86A003B05BF /* 03 UserFeed */,
 				2CEE969B277DD85C003B05BF /* 02 VideoInfo */,
 				2CEBDC13277CDA1A005AA57E /* 01 Feed */,
@@ -164,6 +171,7 @@
 				2CEE9692277DC099003B05BF /* Server+MoreFeed.swift */,
 				2CEE9694277DC21B003B05BF /* Server+VideoInfo.swift */,
 				2CEE96A5277DE8DC003B05BF /* Server+UserFeed.swift */,
+				2CEF1F3F278C2B4C00CE9AAD /* Server+VideoComments.swift */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -181,6 +189,7 @@
 			children = (
 				2CEE969C277DD86C003B05BF /* VideoInfoViewController.swift */,
 				2CEE969E277DD88A003B05BF /* VideoInfoViewModel.swift */,
+				2CEF1F41278C30D100CE9AAD /* VideoCommentCell.swift */,
 			);
 			path = "02 VideoInfo";
 			sourceTree = "<group>";
@@ -192,6 +201,14 @@
 				2CEE96A7277DE979003B05BF /* UserFeedViewModel.swift */,
 			);
 			path = "03 UserFeed";
+			sourceTree = "<group>";
+		};
+		2CEF1F43278C682C00CE9AAD /* 04 Video Comments */ = {
+			isa = PBXGroup;
+			children = (
+				2CEF1F44278C683F00CE9AAD /* VideoCommentsViewController.swift */,
+			);
+			path = "04 Video Comments";
 			sourceTree = "<group>";
 		};
 		65B34217F6AC9F4AF4F379E7 /* Pods */ = {
@@ -330,7 +347,9 @@
 				2CEE9691277DC08E003B05BF /* Server+Feed.swift in Sources */,
 				2CEE9693277DC099003B05BF /* Server+MoreFeed.swift in Sources */,
 				2CEBDBFD277CD3CB005AA57E /* VideosViewController.swift in Sources */,
+				2CEF1F45278C683F00CE9AAD /* VideoCommentsViewController.swift in Sources */,
 				2CEBDC1A277CDCFA005AA57E /* AcelaViewController.swift in Sources */,
+				2CEF1F40278C2B4C00CE9AAD /* Server+VideoComments.swift in Sources */,
 				2CEBDBF9277CD3CB005AA57E /* AppDelegate.swift in Sources */,
 				2CEE9695277DC21B003B05BF /* Server+VideoInfo.swift in Sources */,
 				2CEBDC11277CD898005AA57E /* FeedModel.swift in Sources */,
@@ -345,6 +364,7 @@
 				2CEE96A8277DE979003B05BF /* UserFeedViewModel.swift in Sources */,
 				2CEBDC15277CDA43005AA57E /* VideosCell.swift in Sources */,
 				2CEE969F277DD88A003B05BF /* VideoInfoViewModel.swift in Sources */,
+				2CEF1F42278C30D100CE9AAD /* VideoCommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +448,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -482,6 +503,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

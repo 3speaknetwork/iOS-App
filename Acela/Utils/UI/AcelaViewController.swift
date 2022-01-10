@@ -17,7 +17,11 @@ class AcelaViewController: UIViewController {
 			self.hud?.hide(animated: false)
 			self.hud = MBProgressHUD(view: view ?? self.view)
 			self.hud?.button.titleLabel?.text = message
-			self.view.addSubview(self.hud!)
+			if let v = view {
+				v.addSubview(self.hud!)
+			} else {
+				self.view.addSubview(self.hud!)
+			}
 			self.hud?.show(animated: false)
 		}
 	}

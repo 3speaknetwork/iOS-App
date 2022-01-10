@@ -5,9 +5,11 @@ platform :ios, '13.0'
 target 'Acela' do
 	# Comment the next line if you don't want to use dynamic frameworks
 	use_frameworks!
+	pod 'Down'
 	pod 'HMSegmentedControl'
 	pod 'MBProgressHUD'
 	pod 'MarkdownView'
+	pod 'ScrollableStackView'
 	pod 'SDWebImage'
 	pod 'SwiftDate'
 	# Pods for Acela

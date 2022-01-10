@@ -20,14 +20,14 @@ extension Server {
 						 let model = try? JSONDecoder().decode([FeedModel].self, from: data) {
 						handler(.success(model))
 					} else {
-						handler(.failure(NSError(domain: "Server", code: 404, userInfo: ["desc": "JSON mapping failed"])))
+						handler(.failure(self.jsonMappingFailed))
 					}
 				} else {
-					handler(.failure(NSError(domain: "Server", code: 404, userInfo: ["desc": "user not found"])))
+					handler(.failure(self.statusCodeNot200))
 				}
 			}.resume()
 		} else {
-			handler(.failure(NSError(domain: "Server", code: 404, userInfo: ["desc": "invalid user account url"])))
+			handler(.failure(invalidUrlError))
 		}
 	}
 }

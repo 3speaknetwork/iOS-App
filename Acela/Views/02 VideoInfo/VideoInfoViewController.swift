@@ -10,6 +10,7 @@ import SwiftDate
 import AVKit
 import MarkdownView
 import SafariServices
+import MBProgressHUD
 
 class VideoInfoViewController: AcelaViewController {
 	@IBOutlet var titleLabel: UILabel!
@@ -18,6 +19,8 @@ class VideoInfoViewController: AcelaViewController {
 	@IBOutlet var userImageView: UIImageView!
 	@IBOutlet var shadowView: UIView!
 	@IBOutlet var markDownView: MarkdownView!
+	@IBOutlet var tableViewComments: UITableView!
+	@IBOutlet var segmentedControl: UISegmentedControl!
 
 	let viewModel = VideoInfoViewModel()
 	let controller = AVPlayerViewController()
@@ -70,6 +73,17 @@ class VideoInfoViewController: AcelaViewController {
 					self.videoImageView.addGestureRecognizer(tapPlayVideo)
 				}
 			}
+		}
+	}
+
+	@IBAction func segmentChanged() {
+		if segmentedControl.selectedSegmentIndex == 0 {
+			self.tableViewComments.isHidden = true
+			self.markDownView.isHidden = false
+		} else {
+			self.tableViewComments.isHidden = false
+			self.markDownView.isHidden = true
+			loadComments()
 		}
 	}
 
@@ -192,6 +206,40 @@ class VideoInfoViewController: AcelaViewController {
 			 segue.identifier == "userFeed",
 			 let viewController = segue.destination as? UserFeedViewController {
 			viewController.viewModel.userName = sender
+		} else if
+			segue.identifier == "videoComments",
+			let viewController = segue.destination as? VideoCommentsViewController {
+			viewController.viewModel = viewModel
 		}
+	}
+
+	func loadComments() {
+		showHUD("Loading comments", view: self.tableViewComments)
+		viewModel.loadComments { [weak self] result in
+			self?.hideHUD()
+			if self?.viewModel.comments.count ?? 0 > 2 {
+				self?.segmentedControl.selectedSegmentIndex = 0
+				self?.performSegue(withIdentifier: "videoComments", sender: nil)
+			} else {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					self?.tableViewComments.reloadData()
+				}
+			}
+		}
+	}
+}
+
+extension VideoInfoViewController: UITableViewDelegate, UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		viewModel.comments.count
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		if let commentCell = cell as? VideoCommentCell {
+			commentCell.markDownView.load(markdown: viewModel.comments[indexPath.row].body)
+			commentCell.markDownView.isScrollEnabled = false
+		}
+		return cell
 	}
 }
