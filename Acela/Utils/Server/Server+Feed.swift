@@ -9,10 +9,10 @@ import Foundation
 
 extension Server {
 	func getFeed(
-		_ isTrending: Bool,
+		_ type: VideosFeedType,
 		handler: @escaping (Result<[FeedModel], NSError>) -> Void
 	) {
-		if let url = URL(string: "\(endPoint)\(isTrending ? trendingFeed : newFeed)") {
+		if let url = URL(string: "\(server)\(type.endPoint)") {
 			URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
 				if let http = response as? HTTPURLResponse,
 						http.statusCode == 200 {

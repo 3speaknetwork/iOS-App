@@ -10,7 +10,6 @@ import SDWebImage
 
 class VideosViewController: AcelaViewController {
 	let viewModel = VideosViewModel()
-	@IBOutlet var viewForSegment: UISegmentedControl!
 	@IBOutlet var tableView: UITableView!
 	let refresh = UIRefreshControl()
 
@@ -18,21 +17,18 @@ class VideosViewController: AcelaViewController {
 		super.viewDidLoad()
 		refresh.addTarget(self, action: #selector(reloadData), for: .valueChanged)
 		tableView.addSubview(refresh)
-		viewForSegment.selectedSegmentIndex = 0
+		title = viewModel.feedType.title
 		reloadData()
 	}
 
-	@IBAction func segmentChanged() {
-		if (viewModel.trendingFeed.isEmpty && viewForSegment.selectedSegmentIndex == 0) {
-			reloadData()
-		} else if (viewModel.newFeed.isEmpty && viewForSegment.selectedSegmentIndex == 1) {
-			reloadData()
-		}
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		navigationController?.setNavigationBarHidden(false, animated: true)
 	}
 
 	@objc func reloadData() {
 		showHUD("Loading Data")
-		viewModel.getFeed(viewForSegment.selectedSegmentIndex == 0) { [weak self] result in
+		viewModel.getFeed() { [weak self] result in
 			guard let self = self else { return }
 			self.hideHUD()
 			self.refresh.endRefreshing()
@@ -55,21 +51,20 @@ class VideosViewController: AcelaViewController {
 	}
 
 	func loadVideoInfo(at: IndexPath) {
-		let item = viewForSegment.selectedSegmentIndex == 1 ? viewModel.newFeed[at.row] : viewModel.trendingFeed[at.row]
+		let item = viewModel.feedItems[at.row]
 		performSegue(withIdentifier: "videoDetails", sender: item)
 	}
 }
 
 extension VideosViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		viewForSegment.selectedSegmentIndex == 1 ? viewModel.newFeed.count : viewModel.trendingFeed.count
+		viewModel.feedItems.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 		if let vCell = cell as? VideosCell {
-			let item = viewForSegment.selectedSegmentIndex == 1
-			? viewModel.newFeed[indexPath.row] : viewModel.trendingFeed[indexPath.row]
+			let item = viewModel.feedItems[indexPath.row]
 			vCell.updateData(item: item)
 		}
 		return cell
@@ -81,20 +76,14 @@ extension VideosViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-		if viewForSegment.selectedSegmentIndex == 1 {
-			if indexPath.row == viewModel.newFeed.count - 1 {
-				loadNextPage(isTrending: false)
-			}
-		} else {
-			if indexPath.row == viewModel.trendingFeed.count - 1 {
-				loadNextPage(isTrending: true)
-			}
+		if indexPath.row == viewModel.feedItems.count - 1 {
+			loadNextPage()
 		}
 	}
 
-	func loadNextPage(isTrending: Bool) {
+	func loadNextPage() {
 		showHUD("Loading Data")
-		viewModel.loadNextPage(isTrending) { [weak self] result in
+		viewModel.loadNextPage() { [weak self] result in
 			guard let self = self else { return }
 			self.hideHUD()
 			self.refresh.endRefreshing()
@@ -105,5 +94,15 @@ extension VideosViewController: UITableViewDataSource, UITableViewDelegate {
 				self.showAlert(message: "Something went wrong.\n\(error.localizedDescription)")
 			}
 		}
+	}
+}
+
+extension VideosViewController {
+	func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+		 if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+				navigationController?.setNavigationBarHidden(true, animated: true)
+		 } else {
+				navigationController?.setNavigationBarHidden(false, animated: true)
+		 }
 	}
 }

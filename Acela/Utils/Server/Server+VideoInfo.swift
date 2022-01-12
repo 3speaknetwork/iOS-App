@@ -13,7 +13,7 @@ extension Server {
 		permlink: String,
 		handler: @escaping (Result<VideoInfo, NSError>) -> Void
 	) {
-		if let url = URL(string: "\(endPoint)@\(userName)/\(permlink)") {
+		if let url = URL(string: "\(server)apiv2/@\(userName)/\(permlink)") {
 			URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
 				if let http = response as? HTTPURLResponse,
 						http.statusCode == 200 {

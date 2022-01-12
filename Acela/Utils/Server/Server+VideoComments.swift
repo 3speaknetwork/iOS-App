@@ -27,6 +27,13 @@ struct VideoCommentResponseObject: Codable {
 	let created: String
 	let children: Int
 	let pending_payout_value: String
+	let active_votes: [VideoCommentResponseVote]
+	let depth: Int
+	let parent_permlink: String
+}
+
+struct VideoCommentResponseVote: Codable {
+	let percent: Int
 }
 
 extension Server {

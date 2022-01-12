@@ -7,6 +7,7 @@
 
 import UIKit
 import Down
+import SDWebImage
 
 class VideoCommentsViewController: UIViewController {
 	@IBOutlet var tableViewComments: UITableView!
@@ -21,6 +22,20 @@ class VideoCommentsViewController: UIViewController {
 		super.viewDidAppear(animated)
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			self.tableViewComments.reloadData()
+			self.scanForChildren()
+		}
+	}
+
+	func scanForChildren() {
+		for i in 0..<viewModel.comments.count {
+			if viewModel.comments[i].children > 0,
+				 viewModel.comments.filter({ $0.parent_permlink == viewModel.comments[i].permlink }).isEmpty {
+				viewModel.loadCommentChildren(for: i) { [weak self] result in
+					self?.tableViewComments.reloadData()
+					self?.scanForChildren()
+				}
+				return
+			}
 		}
 	}
 }
@@ -32,10 +47,8 @@ extension VideoCommentsViewController: UITableViewDelegate, UITableViewDataSourc
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-		if let down = try? Down(markdownString: viewModel.comments[indexPath.row].body).toAttributedString() {
-			cell.textLabel?.attributedText = down
-		} else {
-			cell.textLabel?.attributedText = nil
+		if let commentsCell = cell as? VideoCommentsCell {
+			commentsCell.updateData(item: viewModel.comments[indexPath.row])
 		}
 		return cell
 	}

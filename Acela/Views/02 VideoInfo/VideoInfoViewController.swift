@@ -38,10 +38,10 @@ class VideoInfoViewController: AcelaViewController {
 
 	@objc func triggerVideoPlay() {
 		guard let item = viewModel.item else { return }
-		if item.isIpfs, let ipfs = item.ipfs,
+		if item.isIpfs == true, let ipfs = item.ipfs,
 			 let url = URL(string: Server.shared.m3u8(isIpfs: true, identifier: ipfs)) {
 			videoPlayer(url: url)
-		} else if !item.isIpfs, let url = URL(string: Server.shared.m3u8(isIpfs: true, identifier: item.permlink)) {
+		} else if item.isIpfs == false, let url = URL(string: Server.shared.m3u8(isIpfs: true, identifier: item.permlink)) {
 			videoPlayer(url: url)
 		}
 	}
@@ -108,7 +108,7 @@ class VideoInfoViewController: AcelaViewController {
 	@objc func shareTapped() {
 		guard
 			let item = viewModel.item,
-			let url = URL(string: "\(Server.shared.server)watch?v=\(item.author)/\(item.permlink)")
+			let url = URL(string: "\(Server.shared.server)watch?v=\(item.author ?? item.owner ?? "")/\(item.permlink)")
 		else { return }
 		let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
 		present(activityViewController, animated: true, completion: nil)
@@ -175,29 +175,25 @@ class VideoInfoViewController: AcelaViewController {
 		let time = item.created.toISODate(region: Region.current)?.toRelative(
 			style: RelativeFormatter.twitterStyle(),
 			locale: Locales.english) ?? ""
-		subTitleLabel?.text = "👤 \(item.author) ▶️ \(item.views) 🕣 \(duration) 📢 \(time)"
-		if let thumbnail = item.images.thumbnail, let url = URL(string: thumbnail) {
+		subTitleLabel?.text = "👤 \(item.author ?? item.owner ?? "") ▶️ \(item.views) 🕣 \(duration) 📢 \(time)"
+		if let thumbnail = item.thumbUrl ?? item.images?.thumbnail, let url = URL(string: thumbnail) {
 			videoImageView?.sd_setImage(
 				with: url,
-				placeholderImage: UIImage(named: "3S_logo"))
-			videoImageView?.contentMode = .scaleAspectFill
+				placeholderImage: UIImage(named: "3-speak-logo"))
 		} else {
-			videoImageView?.contentMode = .scaleAspectFit
-			videoImageView?.image = UIImage(named: "3S_logo")
+			videoImageView?.image = UIImage(named: "3-speak-logo")
 		}
-		if let thumb = URL(string: "https://images.hive.blog/u/\(item.author)/avatar") {
+		if let thumb = URL(string: "https://images.hive.blog/u/\(item.author ?? item.owner ?? "")/avatar") {
 			userImageView?.sd_setImage(
 				with: thumb,
-				placeholderImage: UIImage(named: "3S_logo"))
-			userImageView?.contentMode = .scaleAspectFill
+				placeholderImage: UIImage(named: "3-speak-logo"))
 		} else {
-			userImageView?.contentMode = .scaleAspectFit
-			userImageView?.image = UIImage(named: "3S_logo")
+			userImageView?.image = UIImage(named: "3-speak-logo")
 		}
 	}
 
 	@objc func showUserFeed() {
-		guard let author = viewModel.item?.author else { return }
+		guard let author = viewModel.item?.author ?? viewModel.item?.owner else { return }
 		performSegue(withIdentifier: "userFeed", sender: author)
 	}
 

@@ -34,24 +34,20 @@ class VideosCell: UITableViewCell {
 		let time = item.created.toISODate(region: Region.current)?.toRelative(
 			style: RelativeFormatter.twitterStyle(),
 			locale: Locales.english) ?? ""
-		cellSubTitle?.text = "👤 \(item.author) ▶️ \(item.views) 🕣 \(duration) 📢 \(time)"
-		if let thumbnail = item.images.thumbnail, let url = URL(string: thumbnail) {
+		cellSubTitle?.text = "👤 \(item.author ?? item.owner ?? "") ▶️ \(item.views) 🕣 \(duration) 📢 \(time)"
+		if let thumbnail = item.thumbUrl ?? item.images?.thumbnail, let url = URL(string: thumbnail) {
 			cellImageView?.sd_setImage(
 				with: url,
-				placeholderImage: UIImage(named: "3S_logo"))
-			cellImageView?.contentMode = .scaleAspectFill
+				placeholderImage: UIImage(named: "3-speak-logo"))
 		} else {
-			cellImageView?.contentMode = .scaleAspectFit
-			cellImageView?.image = UIImage(named: "3S_logo")
+			cellImageView?.image = UIImage(named: "3-speak-logo")
 		}
-		if let thumb = URL(string: "https://images.hive.blog/u/\(item.author)/avatar") {
+		if let thumb = URL(string: "https://images.hive.blog/u/\(item.author ?? item.owner ?? "")/avatar") {
 			cellUserImageView?.sd_setImage(
 				with: thumb,
-				placeholderImage: UIImage(named: "3S_logo"))
-			cellUserImageView?.contentMode = .scaleAspectFill
+				placeholderImage: UIImage(named: "3-speak-logo"))
 		} else {
-			cellUserImageView?.contentMode = .scaleAspectFit
-			cellUserImageView?.image = UIImage(named: "3S_logo")
+			cellUserImageView?.image = UIImage(named: "3-speak-logo")
 		}
 	}
 }

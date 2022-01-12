@@ -8,22 +8,15 @@
 import Foundation
 
 class VideosViewModel {
-	var trendingFeed: [FeedModel] = []
-	var newFeed: [FeedModel] = []
+	var feedItems: [FeedModel] = []
+	var feedType: VideosFeedType = .home
 
-	func getFeed(
-		_ isTrending: Bool,
-		handler: @escaping (Result<Void, NSError>) -> Void
-	) {
-		Server.shared.getFeed(isTrending) { response in
+	func getFeed(_ handler: @escaping (Result<Void, NSError>) -> Void) {
+		Server.shared.getFeed(feedType) { response in
 			OperationQueue.main.addOperation {
 				switch response {
 				case .success(let items):
-					if isTrending {
-						self.trendingFeed = items
-					} else {
-						self.newFeed = items
-					}
+					self.feedItems = items
 					handler(.success(()))
 				case .failure(let errr):
 					handler(.failure(errr))
@@ -33,20 +26,13 @@ class VideosViewModel {
 	}
 
 	func loadNextPage(
-		_ isTrending: Bool,
 		handler: @escaping (Result<Void, NSError>) -> Void
 	) {
-		Server.shared.getMoreFeed(
-			isTrending, skip: isTrending ? trendingFeed.count : newFeed.count
-		) { response in
+		Server.shared.getMoreFeed(feedType, skip: feedItems.count) { response in
 			OperationQueue.main.addOperation {
 				switch response {
 				case .success(let model):
-					if isTrending {
-						self.trendingFeed = model.trends ?? []
-					} else {
-						self.trendingFeed = model.recommended ?? []
-					}
+					self.feedItems += self.feedType.getItems(model)
 					handler(.success(()))
 				case .failure(let errr):
 					handler(.failure(errr))

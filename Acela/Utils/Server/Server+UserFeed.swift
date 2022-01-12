@@ -12,7 +12,7 @@ extension Server {
 		_ userName: String,
 		handler: @escaping (Result<[FeedModel], NSError>) -> Void
 	) {
-		if let url = URL(string: "\(endPoint)feeds/@\(userName)") {
+		if let url = URL(string: "\(server)apiv2/feeds/@\(userName)") {
 			URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
 				if let http = response as? HTTPURLResponse,
 						http.statusCode == 200 {

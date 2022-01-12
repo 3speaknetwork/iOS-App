@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="3S_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ukB-8N-eNj">
-                                <rect key="frame" x="16" y="399" width="382" height="98"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="3-speak-logo" translatesAutoresizingMaskIntoConstraints="NO" id="ukB-8N-eNj">
+                                <rect key="frame" x="80" y="415.5" width="254.5" height="65"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQg-k6-US1">
                                 <rect key="frame" x="20" y="815" width="374" height="47"/>
@@ -46,7 +46,7 @@ by sagarkothari88</string>
         </scene>
     </scenes>
     <resources>
-        <image name="3S_logo" width="382" height="98"/>
+        <image name="3-speak-logo" width="254.5" height="65"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

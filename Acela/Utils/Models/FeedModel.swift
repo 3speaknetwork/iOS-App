@@ -8,7 +8,7 @@
 import Foundation
 
 struct MoreFeedModel: Codable {
-	let trends: [FeedModel]?
+	var trends: [FeedModel]?
 	let recommended: [FeedModel]?
 }
 
@@ -17,11 +17,13 @@ struct FeedModel: Codable {
 	let title: String
 	let views: Int
 	let duration: Double
-	let author: String
+	let author: String?
+	let owner: String?
 	let permlink: String
-	let images: FeedModelImage
-	let isIpfs: Bool
+	let images: FeedModelImage?
+	let isIpfs: Bool?
 	let ipfs: String?
+	let thumbUrl: String?
 }
 
 struct FeedModelImage: Codable {
