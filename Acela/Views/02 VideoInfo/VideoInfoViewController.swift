@@ -8,40 +8,35 @@
 import UIKit
 import SwiftDate
 import AVKit
-import MarkdownView
 import SafariServices
 import MBProgressHUD
 
 class VideoInfoViewController: AcelaViewController {
-	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var subTitleLabel: UILabel!
-	@IBOutlet var videoImageView: UIImageView!
-	@IBOutlet var userImageView: UIImageView!
-	@IBOutlet var shadowView: UIView!
-	@IBOutlet var markDownView: MarkdownView!
-	@IBOutlet var tableViewComments: UITableView!
-	@IBOutlet var segmentedControl: UISegmentedControl!
+	@IBOutlet var tableView: UITableView!
 
 	let viewModel = VideoInfoViewModel()
 	let controller = AVPlayerViewController()
 	var observer: NSKeyValueObservation?
 	var player: AVPlayer? = nil
-	var videoDesc = ""
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = viewModel.item?.title ?? "No Title"
-		applyThemeing()
 		updateData()
 		triggerVideoPlay()
 	}
 
+	func updateData() {
+		loadVideoInfo()
+		loadComments()
+	}
+
 	@objc func triggerVideoPlay() {
 		guard let item = viewModel.item else { return }
-		if item.isIpfs == true, let ipfs = item.ipfs,
+		if let ipfs = item.ipfs,
 			 let url = URL(string: Server.shared.m3u8(isIpfs: true, identifier: ipfs)) {
 			videoPlayer(url: url)
-		} else if item.isIpfs == false, let url = URL(string: Server.shared.m3u8(isIpfs: true, identifier: item.permlink)) {
+		} else if let url = URL(string: Server.shared.m3u8(isIpfs: true, identifier: item.permlink)) {
 			videoPlayer(url: url)
 		}
 	}
@@ -68,22 +63,7 @@ class VideoInfoViewController: AcelaViewController {
 				player.status == .readyToPlay {
 			present(controller, animated: true) {
 				player.play()
-				if self.videoImageView.gestureRecognizers == nil || self.videoImageView.gestureRecognizers?.isEmpty == true {
-					let tapPlayVideo = UITapGestureRecognizer(target: self, action: #selector(self.showPlayer))
-					self.videoImageView.addGestureRecognizer(tapPlayVideo)
-				}
 			}
-		}
-	}
-
-	@IBAction func segmentChanged() {
-		if segmentedControl.selectedSegmentIndex == 0 {
-			self.tableViewComments.isHidden = true
-			self.markDownView.isHidden = false
-		} else {
-			self.tableViewComments.isHidden = false
-			self.markDownView.isHidden = true
-			loadComments()
 		}
 	}
 
@@ -114,81 +94,28 @@ class VideoInfoViewController: AcelaViewController {
 		present(activityViewController, animated: true, completion: nil)
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		loadVideoInfo()
-	}
-
 	func loadVideoInfo() {
 		guard
-			videoDesc.isEmpty
+			viewModel.videoInfo?.videoDesc == nil
 		else {
-			self.markDownView.load(markdown: self.videoDesc)
 			return
 		}
-		self.markDownView.load(markdown: "### Loading info\nPlease wait...")
 		viewModel.getInfo() { [weak self] result in
 			guard let self = self else { return }
-			switch result {
-			case .success:
-				if let desc = self.viewModel.videoInfo?.videoDesc {
-					self.videoDesc = desc
-					self.markDownView.load(markdown: self.videoDesc)
+			self.tableView.reloadData()
+		}
+	}
+
+	func scanForChildren() {
+		for i in 0..<viewModel.comments.count {
+			if viewModel.comments[i].children > 0,
+				 viewModel.comments.filter({ $0.parent_permlink == viewModel.comments[i].permlink }).isEmpty {
+				viewModel.loadCommentChildren(for: i) { [weak self] result in
+					self?.tableView.reloadData()
+					self?.scanForChildren()
 				}
-			case .failure(let error):
-				self.markDownView.load(markdown: "### Error loading info.\n\(error.localizedDescription)")
+				return
 			}
-		}
-	}
-
-	func applyThemeing() {
-		addShare()
-		shadowView.layer.borderColor = UIColor.label.cgColor
-		shadowView.layer.borderWidth = 1
-		shadowView.layer.cornerRadius = 15
-		videoImageView?.layer.cornerRadius = 15
-		videoImageView?.clipsToBounds = true
-		userImageView.clipsToBounds = true
-		userImageView.layer.cornerRadius = 25
-		userImageView.layer.borderColor = UIColor.label.cgColor
-		userImageView.layer.borderWidth = 1
-		let tapG = UITapGestureRecognizer(target: self, action: #selector(showUserFeed))
-		userImageView.addGestureRecognizer(tapG)
-		markDownView.onTouchLink = { [weak self] request in
-			guard let url = request.url else { return false }
-			if url.scheme == "file" {
-				return false
-			} else if url.scheme == "https" || url.scheme == "http" {
-				let safari = SFSafariViewController(url: url)
-				self?.navigationController?.present(safari, animated: true, completion: nil)
-				return false
-			} else {
-				return false
-			}
-		}
-	}
-
-	func updateData() {
-		guard let item = viewModel.item else { return }
-		titleLabel?.text = item.title
-		let duration = item.duration.toIntervalString(options: nil)
-		let time = item.created.toISODate(region: Region.current)?.toRelative(
-			style: RelativeFormatter.twitterStyle(),
-			locale: Locales.english) ?? ""
-		subTitleLabel?.text = "👤 \(item.author ?? item.owner ?? "") ▶️ \(item.views) 🕣 \(duration) 📢 \(time)"
-		if let thumbnail = item.thumbUrl ?? item.images?.thumbnail, let url = URL(string: thumbnail) {
-			videoImageView?.sd_setImage(
-				with: url,
-				placeholderImage: UIImage(named: "3-speak-logo"))
-		} else {
-			videoImageView?.image = UIImage(named: "3-speak-logo")
-		}
-		if let thumb = URL(string: "https://images.hive.blog/u/\(item.author ?? item.owner ?? "")/avatar") {
-			userImageView?.sd_setImage(
-				with: thumb,
-				placeholderImage: UIImage(named: "3-speak-logo"))
-		} else {
-			userImageView?.image = UIImage(named: "3-speak-logo")
 		}
 	}
 
@@ -202,40 +129,63 @@ class VideoInfoViewController: AcelaViewController {
 			 segue.identifier == "userFeed",
 			 let viewController = segue.destination as? UserFeedViewController {
 			viewController.viewModel.userName = sender
-		} else if
-			segue.identifier == "videoComments",
-			let viewController = segue.destination as? VideoCommentsViewController {
-			viewController.viewModel = viewModel
 		}
 	}
 
 	func loadComments() {
-		showHUD("Loading comments", view: self.tableViewComments)
+		showHUD("Loading comments", view: self.tableView)
 		viewModel.loadComments { [weak self] result in
 			self?.hideHUD()
-			if self?.viewModel.comments.count ?? 0 > 2 {
-				self?.segmentedControl.selectedSegmentIndex = 0
-				self?.performSegue(withIdentifier: "videoComments", sender: nil)
-			} else {
-				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-					self?.tableViewComments.reloadData()
-				}
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+				self?.tableView.reloadData()
+				self?.scanForChildren()
 			}
 		}
 	}
 }
 
 extension VideoInfoViewController: UITableViewDelegate, UITableViewDataSource {
+	func numberOfSections(in tableView: UITableView) -> Int {
+		3
+	}
+
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		viewModel.comments.count
+		switch section {
+		case 0: return 1
+		case 1: return self.viewModel.videoInfo != nil ? 1 : 0
+		case 2: return self.viewModel.comments.count
+		default: return 0
+		}
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-		if let commentCell = cell as? VideoCommentCell {
-			commentCell.markDownView.load(markdown: viewModel.comments[indexPath.row].body)
-			commentCell.markDownView.isScrollEnabled = false
+		switch indexPath.section {
+		case 0:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "VideosCell", for: indexPath)
+			if let videosCell = cell as? VideosCell, let item = viewModel.item {
+				videosCell.updateData(item: item)
+				videosCell.handleTapOnVideo = showPlayer
+			}
+			return cell
+		case 1:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "VideoInfoCell", for: indexPath)
+			if let videoInfoCell = cell as? VideoInfoCell {
+				videoInfoCell.updateData(description: self.viewModel.videoInfo?.videoDesc ?? "")
+			}
+			return cell
+		case 2:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCommentsCell", for: indexPath)
+			if let videoCommentsCell = cell as? VideoCommentsCell, !viewModel.comments.isEmpty {
+				videoCommentsCell.updateData(item: viewModel.comments[indexPath.row])
+			}
+			return cell
+		default:
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+			return cell
 		}
-		return cell
+	}
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }

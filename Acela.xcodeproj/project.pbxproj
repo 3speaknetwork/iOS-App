@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C11878627951AE100EE5782 /* VideoInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C11878527951AE100EE5782 /* VideoInfoCell.swift */; };
+		2C11878827951EDE00EE5782 /* VideoCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C11878727951EDE00EE5782 /* VideoCommentsCell.swift */; };
 		2C7805EF278F50E0007398BF /* VideosFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7805EE278F50E0007398BF /* VideosFeedType.swift */; };
 		2C8E1CBD278F46FB00D08101 /* MySidePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E1CBC278F46FB00D08101 /* MySidePanelController.swift */; };
 		2C8E1CBF278F471400D08101 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E1CBE278F471400D08101 /* LeftViewController.swift */; };
@@ -33,13 +35,12 @@
 		2CEE96A6277DE8DC003B05BF /* Server+UserFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE96A5277DE8DC003B05BF /* Server+UserFeed.swift */; };
 		2CEE96A8277DE979003B05BF /* UserFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE96A7277DE979003B05BF /* UserFeedViewModel.swift */; };
 		2CEF1F40278C2B4C00CE9AAD /* Server+VideoComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F3F278C2B4C00CE9AAD /* Server+VideoComments.swift */; };
-		2CEF1F42278C30D100CE9AAD /* VideoCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F41278C30D100CE9AAD /* VideoCommentCell.swift */; };
-		2CEF1F45278C683F00CE9AAD /* VideoCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F44278C683F00CE9AAD /* VideoCommentsViewController.swift */; };
-		2CEF1F47278C9E2300CE9AAD /* VideoCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEF1F46278C9E2200CE9AAD /* VideoCommentsCell.swift */; };
 		C294611E74E686D0855A0F85 /* Pods_Acela.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB599E70CE7289F3D65FBCF /* Pods_Acela.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C11878527951AE100EE5782 /* VideoInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoCell.swift; sourceTree = "<group>"; };
+		2C11878727951EDE00EE5782 /* VideoCommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCommentsCell.swift; sourceTree = "<group>"; };
 		2C7805EE278F50E0007398BF /* VideosFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosFeedType.swift; sourceTree = "<group>"; };
 		2C8E1CBC278F46FB00D08101 /* MySidePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySidePanelController.swift; sourceTree = "<group>"; };
 		2C8E1CBE278F471400D08101 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -68,9 +69,6 @@
 		2CEE96A5277DE8DC003B05BF /* Server+UserFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+UserFeed.swift"; sourceTree = "<group>"; };
 		2CEE96A7277DE979003B05BF /* UserFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedViewModel.swift; sourceTree = "<group>"; };
 		2CEF1F3F278C2B4C00CE9AAD /* Server+VideoComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+VideoComments.swift"; sourceTree = "<group>"; };
-		2CEF1F41278C30D100CE9AAD /* VideoCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentCell.swift; sourceTree = "<group>"; };
-		2CEF1F44278C683F00CE9AAD /* VideoCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentsViewController.swift; sourceTree = "<group>"; };
-		2CEF1F46278C9E2200CE9AAD /* VideoCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentsCell.swift; sourceTree = "<group>"; };
 		5BB599E70CE7289F3D65FBCF /* Pods_Acela.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Acela.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D350635360DA8A1A37A790AC /* Pods-Acela.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acela.debug.xcconfig"; path = "Target Support Files/Pods-Acela/Pods-Acela.debug.xcconfig"; sourceTree = "<group>"; };
 		F46A2218648F48A2C5A20867 /* Pods-Acela.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acela.release.xcconfig"; path = "Target Support Files/Pods-Acela/Pods-Acela.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				2C8E1CBB278F46D900D08101 /* 00 SidePanel */,
-				2CEF1F43278C682C00CE9AAD /* 04 Video Comments */,
 				2CEE96A2277DE86A003B05BF /* 03 UserFeed */,
 				2CEE969B277DD85C003B05BF /* 02 VideoInfo */,
 				2CEBDC13277CDA1A005AA57E /* 01 Feed */,
@@ -208,7 +205,8 @@
 			children = (
 				2CEE969C277DD86C003B05BF /* VideoInfoViewController.swift */,
 				2CEE969E277DD88A003B05BF /* VideoInfoViewModel.swift */,
-				2CEF1F41278C30D100CE9AAD /* VideoCommentCell.swift */,
+				2C11878527951AE100EE5782 /* VideoInfoCell.swift */,
+				2C11878727951EDE00EE5782 /* VideoCommentsCell.swift */,
 			);
 			path = "02 VideoInfo";
 			sourceTree = "<group>";
@@ -220,15 +218,6 @@
 				2CEE96A7277DE979003B05BF /* UserFeedViewModel.swift */,
 			);
 			path = "03 UserFeed";
-			sourceTree = "<group>";
-		};
-		2CEF1F43278C682C00CE9AAD /* 04 Video Comments */ = {
-			isa = PBXGroup;
-			children = (
-				2CEF1F44278C683F00CE9AAD /* VideoCommentsViewController.swift */,
-				2CEF1F46278C9E2200CE9AAD /* VideoCommentsCell.swift */,
-			);
-			path = "04 Video Comments";
 			sourceTree = "<group>";
 		};
 		65B34217F6AC9F4AF4F379E7 /* Pods */ = {
@@ -367,9 +356,7 @@
 				2CEE9691277DC08E003B05BF /* Server+Feed.swift in Sources */,
 				2CEE9693277DC099003B05BF /* Server+MoreFeed.swift in Sources */,
 				2CEBDBFD277CD3CB005AA57E /* VideosViewController.swift in Sources */,
-				2CEF1F45278C683F00CE9AAD /* VideoCommentsViewController.swift in Sources */,
 				2CEBDC1A277CDCFA005AA57E /* AcelaViewController.swift in Sources */,
-				2CEF1F47278C9E2300CE9AAD /* VideoCommentsCell.swift in Sources */,
 				2CEF1F40278C2B4C00CE9AAD /* Server+VideoComments.swift in Sources */,
 				2C7805EF278F50E0007398BF /* VideosFeedType.swift in Sources */,
 				2CEBDBF9277CD3CB005AA57E /* AppDelegate.swift in Sources */,
@@ -379,8 +366,10 @@
 				2CEE969A277DCB95003B05BF /* TimeInterval.swift in Sources */,
 				2CEE96A4277DE885003B05BF /* UserFeedViewController.swift in Sources */,
 				2C8E1CBD278F46FB00D08101 /* MySidePanelController.swift in Sources */,
+				2C11878827951EDE00EE5782 /* VideoCommentsCell.swift in Sources */,
 				2CEBDBFB277CD3CB005AA57E /* SceneDelegate.swift in Sources */,
 				2CEE9697277DC29E003B05BF /* VideoInfo.swift in Sources */,
+				2C11878627951AE100EE5782 /* VideoInfoCell.swift in Sources */,
 				2CEBDC17277CDA77005AA57E /* VideosViewModel.swift in Sources */,
 				2CEE96A6277DE8DC003B05BF /* Server+UserFeed.swift in Sources */,
 				2CEE969D277DD86C003B05BF /* VideoInfoViewController.swift in Sources */,
@@ -388,7 +377,6 @@
 				2CEBDC15277CDA43005AA57E /* VideosCell.swift in Sources */,
 				2C8E1CBF278F471400D08101 /* LeftViewController.swift in Sources */,
 				2CEE969F277DD88A003B05BF /* VideoInfoViewModel.swift in Sources */,
-				2CEF1F42278C30D100CE9AAD /* VideoCommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,31 +53,31 @@ extension LeftViewController: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func loadPageAtIndex(_ index: Int) {
-//		guard
-//			let sidePanel = parent as? JASidePanelController,
-//			let center = sidePanel.centerPanel as? UINavigationController,
-//			let story = storyboard,
-//			let videos = story.instantiateViewController(withIdentifier: "VideosViewController") as? VideosViewController
-//		else { return }
-//		switch index {
-//		case 0:
-//			videos.viewModel.feedType = .home
-//		case 1:
-////			videos.viewModel.feedType = .new
-//			print("Do nothing")
-//			return
-//		case 2:
-//			videos.viewModel.feedType = .trending
-//		case 3:
+		guard
+			let sidePanel = parent as? JASidePanelController,
+			let center = sidePanel.centerPanel as? UINavigationController,
+			let story = storyboard,
+			let videos = story.instantiateViewController(withIdentifier: "VideosViewController") as? VideosViewController
+		else { return }
+		switch index {
+		case 0:
+			videos.viewModel.feedType = .home
+		case 1:
 //			videos.viewModel.feedType = .new
-//		default:
-//			print("Do nothing")
-//			return
-//		}
-//		selectedItem = index
-//		sidePanel.showCenterPanel(animated: true)
-//		// center.setViewControllers([videos], animated: true)
-//		center.pushViewController(videos, animated: true)
+			print("Do nothing")
+			return
+		case 2:
+			videos.viewModel.feedType = .trending
+		case 3:
+			videos.viewModel.feedType = .new
+		default:
+			print("Do nothing")
+			return
+		}
+		selectedItem = index
+		sidePanel.showCenterPanel(animated: true)
+		// center.setViewControllers([videos], animated: true)
+		center.pushViewController(videos, animated: true)
 	}
 }
 

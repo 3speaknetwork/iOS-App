@@ -14,8 +14,31 @@ class VideosCell: UITableViewCell {
 	@IBOutlet var cellImageView: UIImageView!
 	@IBOutlet var cellUserImageView: UIImageView!
 	@IBOutlet var cellShadowView: UIView!
+	var tapUser: UITapGestureRecognizer? = nil
+	var tapVideo: UITapGestureRecognizer? = nil
+
+	var handleTapOnUserProfilePic: (() -> Void)? = nil
+	var handleTapOnVideo: (() -> Void)? = nil
+
+	@objc func tappedOnUserProfilePic() {
+		handleTapOnUserProfilePic?()
+	}
+
+	@objc func tappedOnVideo() {
+		handleTapOnVideo?()
+	}
 
 	func applyThemeing() {
+		if tapUser == nil {
+			let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnUserProfilePic))
+			tapUser = gesture
+			cellUserImageView.addGestureRecognizer(gesture)
+		}
+		if tapVideo == nil {
+			let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnVideo))
+			tapVideo = gesture 
+			cellImageView.addGestureRecognizer(gesture)
+		}
 		cellShadowView.layer.borderColor = UIColor.label.cgColor
 		cellShadowView.layer.borderWidth = 1
 		cellShadowView.layer.cornerRadius = 15

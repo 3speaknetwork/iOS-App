@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct MoreFeedModel: Codable {
-	var trends: [FeedModel]?
-	let recommended: [FeedModel]?
-}
-
 struct FeedModel: Codable {
 	let created: String
 	let title: String

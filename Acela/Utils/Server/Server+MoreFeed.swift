@@ -11,9 +11,9 @@ extension Server {
 	func getMoreFeed(
 		_ type: VideosFeedType,
 		skip: Int? = nil,
-		handler: @escaping (Result<MoreFeedModel, NSError>) -> Void
+		handler: @escaping (Result<[FeedModel], NSError>) -> Void
 	) {
-		var string = "\(server)\(type.moreEndPoint)"
+		var string = "\(server)\(type.endPoint)"
 		if let skip = skip {
 			string = "\(string)/more?skip=\(skip)"
 		}
@@ -22,12 +22,8 @@ extension Server {
 				if let http = response as? HTTPURLResponse,
 						http.statusCode == 200 {
 					if let data = data {
-						// home feed returns array
-						if type == .home, let items = try? JSONDecoder().decode([FeedModel].self, from: data) {
-							handler(.success(MoreFeedModel(trends: items, recommended: [])))
-						// other feeds returns something else
-						} else if let model = try? JSONDecoder().decode(MoreFeedModel.self, from: data) {
-							handler(.success(model))
+						if let items = try? JSONDecoder().decode([FeedModel].self, from: data) {
+							handler(.success(items))
 						} else {
 							handler(.failure(self.jsonMappingFailed))
 						}

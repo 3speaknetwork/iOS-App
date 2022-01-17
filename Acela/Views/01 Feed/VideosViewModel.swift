@@ -31,8 +31,8 @@ class VideosViewModel {
 		Server.shared.getMoreFeed(feedType, skip: feedItems.count) { response in
 			OperationQueue.main.addOperation {
 				switch response {
-				case .success(let model):
-					self.feedItems += self.feedType.getItems(model)
+				case .success(let items):
+					self.feedItems += items
 					handler(.success(()))
 				case .failure(let errr):
 					handler(.failure(errr))
