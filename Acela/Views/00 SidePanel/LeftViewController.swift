@@ -61,7 +61,9 @@ extension LeftViewController: UITableViewDataSource, UITableViewDelegate {
 		else { return }
 		switch index {
 		case 0:
-			videos.viewModel.feedType = .home
+			selectedItem = index
+			center.popViewController(animated: true)
+			return
 		case 1:
 //			videos.viewModel.feedType = .new
 			print("Do nothing")
@@ -76,7 +78,6 @@ extension LeftViewController: UITableViewDataSource, UITableViewDelegate {
 		}
 		selectedItem = index
 		sidePanel.showCenterPanel(animated: true)
-		// center.setViewControllers([videos], animated: true)
 		center.pushViewController(videos, animated: true)
 	}
 }
