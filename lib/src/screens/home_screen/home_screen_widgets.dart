@@ -29,27 +29,27 @@ class HomeScreenWidgets {
   }
 
   Widget _listTile(HomeFeed item, BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: ListTile(
-        title: _tileTitle(item, context),
-        onTap: () {
-          debugPrint("Hello world");
-        },
-      ),
+    return ListTile(
+      title: _tileTitle(item, context),
+      onTap: () {
+        debugPrint("Hello world");
+      },
     );
   }
 
   Widget list(List<HomeFeed> list) {
-    return ListView.separated(
-        itemBuilder: (context, index) {
-          return _listTile(list[index], context);
-        },
-        separatorBuilder: (context, index) => const Divider(
-              thickness: 0,
-              height: 0,
-              color: Colors.transparent,
-            ),
-        itemCount: list.length);
+    return Container(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: ListView.separated(
+          itemBuilder: (context, index) {
+            return _listTile(list[index], context);
+          },
+          separatorBuilder: (context, index) => const Divider(
+            thickness: 0,
+            height: 0,
+            color: Colors.transparent,
+          ),
+          itemCount: list.length),
+    );
   }
 }

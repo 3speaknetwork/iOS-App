@@ -42,11 +42,7 @@ class ListTileVideo extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Row(
               children: [
-                CustomCircleAvatar(
-                    height: 40,
-                    width: 40,
-                    url: userThumbUrl //server.userOwnerThumb(item.owner)
-                    ), // ),
+                CustomCircleAvatar(height: 40, width: 40, url: userThumbUrl),
                 Container(
                   width: 5,
                 ),
@@ -54,18 +50,10 @@ class ListTileVideo extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        title, // item.title,
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ),
-                      Container(
-                        height: 5,
-                      ),
-                      Text(
-                        subtitle,
-                        // "📆 ${timeago.format(item.created)} 👤 ${item.owner} 🕚 ${Utilities.formatTime(item.duration.toInt())}",
-                        style: Theme.of(context).textTheme.bodyText1,
-                      )
+                      Text(title, style: Theme.of(context).textTheme.bodyText2),
+                      Container(height: 5),
+                      Text(subtitle,
+                          style: Theme.of(context).textTheme.bodyText1)
                     ],
                   ),
                 )

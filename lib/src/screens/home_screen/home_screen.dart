@@ -1,5 +1,6 @@
 import 'package:acela/src/bloc/server.dart';
 import 'package:acela/src/models/home_screen_feed_models/home_feed_models.dart';
+import 'package:acela/src/screens/drawer_screen/drawer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' show get;
 import 'package:acela/src/screens/home_screen/home_screen_widgets.dart';
@@ -42,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: _screen()
+      body: _screen(),
+      drawer: const DrawerScreen(),
     );
   }
 }
