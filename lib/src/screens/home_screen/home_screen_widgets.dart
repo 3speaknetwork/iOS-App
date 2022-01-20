@@ -1,6 +1,9 @@
+import 'package:acela/src/bloc/server.dart';
 import 'package:acela/src/models/home_screen_feed_models/home_feed_models.dart';
+import 'package:acela/src/utils/seconds_to_duration.dart';
+import 'package:acela/src/widgets/custom_circle_avatar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class HomeScreenWidgets {
   Widget loadingData() {
@@ -31,10 +34,35 @@ class HomeScreenWidgets {
             placeholder: 'assets/branding/three_speak_logo.png',
             image: item.baseThumbUrl,
           ),
-          Text(
-            item.title,
-            style: Theme.of(context).textTheme.bodyText2,
-          )
+          Container(
+            height: 5,
+          ),
+          Row(
+            children: [
+              CustomCircleAvatar(
+                  height: 40,
+                  width: 40,
+                  url: server.userOwnerThumb(item.owner)),
+              Container(
+                width: 5,
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.title,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                    Text(
+                      "📆 ${timeago.format(item.created)} 👤 ${item.owner} 🕚 ${Utilities.formatTime(item.duration.toInt())}",
+                      style: Theme.of(context).textTheme.bodyText1,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -42,7 +70,7 @@ class HomeScreenWidgets {
 
   Widget _listTile(HomeFeed item, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 10,bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: ListTile(
         title: _tileTitle(item, context),
         onTap: () {
