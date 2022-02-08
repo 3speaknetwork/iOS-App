@@ -3,33 +3,33 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "version.json": "52f7516710d05733ce8b775a8ddbc5ab",
-"index.html": "7f68affe389807b62566eb2f12410df9",
-"/": "7f68affe389807b62566eb2f12410df9",
-"main.dart.js": "7c7dd6555e208d123871f1a21a6763d2",
-"favicon.png": "e5f13fc3dd6e358341b79a102670d152",
-"icons/Icon-192.png": "df15c089a3a8f28e9449fb5e62a8e0d1",
-"icons/Icon-maskable-192.png": "dbfe404bcd1ae5b84a07d7bb8a5a59b2",
-"icons/Icon-maskable-512.png": "a2219cda5f24f6f27bbcd6a48217c5b1",
-"icons/Icon-512.png": "932ef853da84b7ab26ef31c1d14b2616",
-"manifest.json": "898be59578fb39e05a1672d0cfc3a21b",
-"assets/AssetManifest.json": "9ea78ebfe85bbed0887a9e5302d4dd1d",
-"assets/NOTICES": "096fa38c8bc3cd4a2c0bb89e8bfe449a",
-"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"assets/assets/branding/three_speak_logo.png": "d0cf3fc7b8ecc274a48b963ff025c885",
-"assets/assets/branding/three_speak_icon.png": "60b8c76507e1b6080fdcb995d9dedd39"
+  "/iOS-App/version.json": "52f7516710d05733ce8b775a8ddbc5ab",
+"/iOS-App/index.html": "7f68affe389807b62566eb2f12410df9",
+"/iOS-App/": "7f68affe389807b62566eb2f12410df9",
+"/iOS-App/main.dart.js": "7c7dd6555e208d123871f1a21a6763d2",
+"/iOS-App/favicon.png": "e5f13fc3dd6e358341b79a102670d152",
+"/iOS-App/icons/Icon-192.png": "df15c089a3a8f28e9449fb5e62a8e0d1",
+"/iOS-App/icons/Icon-maskable-192.png": "dbfe404bcd1ae5b84a07d7bb8a5a59b2",
+"/iOS-App/icons/Icon-maskable-512.png": "a2219cda5f24f6f27bbcd6a48217c5b1",
+"/iOS-App/icons/Icon-512.png": "932ef853da84b7ab26ef31c1d14b2616",
+"/iOS-App/manifest.json": "898be59578fb39e05a1672d0cfc3a21b",
+"/iOS-App/assets/AssetManifest.json": "9ea78ebfe85bbed0887a9e5302d4dd1d",
+"/iOS-App/assets/NOTICES": "096fa38c8bc3cd4a2c0bb89e8bfe449a",
+"/iOS-App/assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
+"/iOS-App/assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"/iOS-App/assets/assets/branding/three_speak_logo.png": "d0cf3fc7b8ecc274a48b963ff025c885",
+"/iOS-App/assets/assets/branding/three_speak_icon.png": "60b8c76507e1b6080fdcb995d9dedd39"
 };
 
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/",
-"main.dart.js",
-"index.html",
-"assets/NOTICES",
-"assets/AssetManifest.json",
-"assets/FontManifest.json"];
+  "/iOS-App/",
+"/iOS-App/main.dart.js",
+"/iOS-App/index.html",
+"/iOS-App/assets/NOTICES",
+"/iOS-App/assets/AssetManifest.json",
+"/iOS-App/assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
