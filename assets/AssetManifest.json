@@ -1,1 +1,8 @@
-{"assets/branding/three_speak_icon.png":["assets/branding/three_speak_icon.png"],"assets/branding/three_speak_logo.png":["assets/branding/three_speak_logo.png"]}
+{
+  "assets/branding/three_speak_icon.png": [
+    "/iOS-App/assets/assets/branding/three_speak_icon.png"
+  ],
+  "assets/branding/three_speak_logo.png": [
+    "/iOS-App/assets/assets/branding/three_speak_logo.png"
+  ]
+}

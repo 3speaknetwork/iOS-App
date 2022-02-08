@@ -1,1 +1,6 @@
-[{"family":"MaterialIcons","fonts":[{"asset":"fonts/MaterialIcons-Regular.otf"}]}]
+[
+  {
+    "family": "MaterialIcons",
+    "fonts": [{ "asset": "/iOS-App/assets/fonts/MaterialIcons-Regular.otf" }]
+  }
+]
