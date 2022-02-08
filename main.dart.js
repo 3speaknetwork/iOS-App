@@ -26332,7 +26332,7 @@ var $async$u9=A.N(function(a8,a9){if(a8===1){o=a9
 s=p}while(true)switch(s){case 0:a5=null
 p=4
 s=7
-return A.S(a7.dz(0,"FontManifest.json"),$async$u9)
+return A.S(a7.dz(0,"/iOS-App/assets/FontManifest.json"),$async$u9)
 case 7:a5=a9
 p=2
 s=6
@@ -44068,7 +44068,7 @@ gmD(){return this.a},
 p9(a){var s,r={},q=a.a
 if(q==null)q=$.PP()
 r.a=r.b=null
-q.a3D("AssetManifest.json",A.axz(),t.wd).bf(0,new A.Q5(r,this,a,q),t.H).h3(new A.Q6(r))
+q.a3D("/iOS-App/assets/AssetManifest.json",A.axz(),t.wd).bf(0,new A.Q5(r,this,a,q),t.H).h3(new A.Q6(r))
 s=r.a
 if(s!=null)return s
 s=new A.a5($.T,t.Lv)
