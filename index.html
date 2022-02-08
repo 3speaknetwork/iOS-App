@@ -27,10 +27,10 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="/iOS-App/favicon.png"/>
 
   <title>acela</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/iOS-App/manifest.json">
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -57,7 +57,7 @@
         // Wait for registration to finish before dropping the <script> tag.
         // Otherwise, the browser will load the script multiple times,
         // potentially different versions.
-        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
+        var serviceWorkerUrl = '/iOS-App/flutter_service_worker.js?v=' + serviceWorkerVersion;
         navigator.serviceWorker.register(serviceWorkerUrl)
           .then((reg) => {
             function waitForActivation(serviceWorker) {
